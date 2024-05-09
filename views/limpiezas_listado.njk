@@ -1,0 +1,28 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Limpiezas | Ficha{% endblock %}
+
+{% block contenido %}
+
+    <h1>Limpiezas de habitación {{ habitacion.numero }}</h1>
+    <div>
+        {% if (session and session.usuario) %}
+            <a class="btn btn-primary" href="/limpiezas/nueva/{{habitacion._id}}">Nueva limpieza</a>
+        {% endif %}
+        {% for limpieza in limpiezas %}
+            <div class="border border-1 rounded-2 p-2">
+                <p class="text-secondary"><i>{{ limpieza.fecha.toISOString().split('T')[0] }}</i></p>
+                <p class="text-secondary">
+                {% if limpieza.observaciones %}
+                    Observaciones: {{ limpieza.observaciones }}
+                {% else %}
+                    <i>Sin observaciones</i>
+                {% endif %}
+                </p>
+            </div>
+        {% else %}
+            <p>No hay limpiezas que mostrar.</p>
+        {% endfor %}
+    </div>
+
+{% endblock %}

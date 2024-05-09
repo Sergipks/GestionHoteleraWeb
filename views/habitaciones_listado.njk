@@ -1,0 +1,21 @@
+{% extends "base.njk" %}
+
+{% block titulo %}Habitaciones | Listado{% endblock %}
+
+{% block contenido %}
+
+    <h1>Listado de habitaciones</h1>
+
+    <div style=" display: flex; flex-wrap: wrap; padding: 5px;">
+    {% for habitacion in habitaciones %}
+        <div class="card" style="width: 18rem; margin-right: 5px; margin-bottom: 5px;">
+            <div class="card-body">
+                <h5 class="card-title">Habitacion {{habitacion.numero}}</h5>
+                <p class="card-text"><i>Ultima limpieza</i>: {{habitacion.ultimaLimpieza.toISOString().split('T')[0]}}</p>
+                <a class="btn btn-primary" href="/habitaciones/{{ habitacion.id }}">Ver ficha</a>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
+{% endblock %}
